@@ -1,0 +1,19 @@
+<form [formGroup]="checkoutForm" (submit)="onSubmit()" class="flex flex-col text-left w-fit">
+
+    <label for="email">Email:</label>
+    <input id="email" type="email" formControlName="email">
+    @if (checkoutForm.controls.email.invalid &&
+    (checkoutForm.controls.email.touched || checkoutForm.controls.email.dirty)){
+    @if (checkoutForm.controls.email.errors?.['required']){
+    <small class="text-red-500">Email is required</small>
+    }
+    @if (checkoutForm.controls.email.errors?.['minlength']){
+    <small class="text-red-500">Required at least 13 characters</small>
+    }
+    @if (checkoutForm.controls.email.errors?.['email']){
+    <small class="text-red-500">Format is not valid</small>
+    }
+    }
+
+    <button type="submit" [disabled]="!checkoutForm.valid" class="border-2 rounded-sm">Submit</button>
+</form>

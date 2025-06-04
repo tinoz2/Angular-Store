@@ -1,0 +1,19 @@
+<div>
+    @if (cartItems().length === 0 || subtotal() <= 0 || total() <=0){ <p>Nada en el carrito</p>
+        } @else {
+        <div>
+            @for (item of cartItems(); track item.productId){
+            <div>
+                <p>{{item.title}}</p>
+                <p>{{item.price}}$</p>
+                <span>{{item.quantity}}</span>
+                <button class="cursor-pointer" (click)="cartService.decreaseQuantity(item.productId)">Bajar qty</button>
+                <button class="cursor-pointer" (click)="cartService.increaseQuantity(item.productId)">Subir qty</button>
+            </div>
+            }
+            <strong>Subtotal: {{subtotal().toFixed(2)}} $</strong>
+            <hr>
+            <strong>Total: {{total().toFixed(2)}} $</strong>
+        </div>
+        }
+</div>
