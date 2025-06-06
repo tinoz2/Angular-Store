@@ -11,9 +11,9 @@
                 <button class="cursor-pointer" (click)="cartService.increaseQuantity(item.productId)">Subir qty</button>
             </div>
             }
-            <strong>Subtotal: {{subtotal().toFixed(2)}} $</strong>
+            <strong>Subtotal: {{subtotal() | currency: 'ARS ': 'symbol': '1.2'}}$</strong>
             <hr>
-            <strong>Total: {{total().toFixed(2)}} $</strong>
+            <strong>Total: {{total() | currency: 'ARS ': 'symbol': '1.2'}}$</strong>
         </div>
         }
 </div>

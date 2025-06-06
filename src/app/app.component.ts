@@ -13,10 +13,7 @@ export class AppComponent {
   title = 'e-commerce';
 
   private auth = inject(AuthService)
+  user$ = this.auth.user$;
+  isAuthenticated$ = this.auth.isAuthenticated$
 
-  constructor() {
-    this.auth.user$.subscribe(user => {
-      console.log("App User: ", user);
-    });
-  }
 }
