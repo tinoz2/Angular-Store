@@ -9,7 +9,7 @@ import { ProductService } from '../../../services/product/product.service';
   template: `@if (product){
     <h2>{{product.title}}</h2>
   } @else {
-    <p>Cargando...</p>
+    <p>Producto no encontrado.</p>
   }`,
   styleUrl: './product-details.component.css'
 })

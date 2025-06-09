@@ -11,6 +11,7 @@
                 <button class="cursor-pointer" (click)="cartService.increaseQuantity(item.productId)">Subir qty</button>
             </div>
             }
+            <button class="cursor-pointer" (click)="cartService.clearCart()">Vaciar carrito</button>
             <strong>Subtotal: {{subtotal() | currency: 'ARS ': 'symbol': '1.2'}}$</strong>
             <hr>
             <strong>Total: {{total() | currency: 'ARS ': 'symbol': '1.2'}}$</strong>

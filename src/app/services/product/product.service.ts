@@ -1,4 +1,4 @@
-import { computed, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { Product } from '../../models/product.model';
 import { HttpClient } from '@angular/common/http';
 import { apiKey } from '../../config/api';
@@ -13,19 +13,20 @@ export class ProductService {
   private _loading = signal<boolean>(false)
   private _error = signal<string | null>(null)
   private _selectedCategory = signal<string>('all')
+  private _http = inject(HttpClient)
 
   products = this._products.asReadonly()
   loading = this._loading.asReadonly()
   error = this._error.asReadonly()
   selectedCategory = this._selectedCategory.asReadonly()
 
-  constructor(private http: HttpClient){
+  constructor(){
     this.fetchData()
   }
 
   fetchData(){
     this._loading.set(true)
-    this.http.get<Product[]>(apiKey)
+    this._http.get<Product[]>(apiKey)
     .subscribe({
       next: (data) => {
         this._products.set(data);
@@ -49,6 +50,6 @@ export class ProductService {
   }
 
   getProductById(id: Params){
-    return this.http.get<Product>(`${apiKey}/${id}`)
+    return this._http.get<Product>(`${apiKey}/${id}`)
   }
 }

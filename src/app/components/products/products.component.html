@@ -1,15 +1,18 @@
-@if (loading() ){
+@if (loading()){
 <p>Cargando productos...</p>
-} @else if (error() ){
+} @else if (error()){
 <p class="text-red-500">{{error()}}</p>
 } @else {
 <div>
     <mat-radio-group aria-label="Select an option">
         <mat-radio-button value="all" (click)="productsService.setCategory('all')">All</mat-radio-button>
-        <mat-radio-button value="men's clothing" (click)="productsService.setCategory(men)">Men Clothing</mat-radio-button>
-        <mat-radio-button value="women's clothing" (click)="productsService.setCategory(women)">Women Clothing</mat-radio-button>
+        <mat-radio-button value="men's clothing" (click)="productsService.setCategory(men)">Men
+            Clothing</mat-radio-button>
+        <mat-radio-button value="women's clothing" (click)="productsService.setCategory(women)">Women
+            Clothing</mat-radio-button>
         <mat-radio-button value="jewelery" (click)="productsService.setCategory('jewelery')">Jewelery</mat-radio-button>
-        <mat-radio-button value="electronics" (click)="productsService.setCategory('electronics')">Electronics</mat-radio-button>
+        <mat-radio-button value="electronics"
+            (click)="productsService.setCategory('electronics')">Electronics</mat-radio-button>
     </mat-radio-group>
     <div class="grid grid-cols-4 gap-4">
         @for (product of filteredProducts(); track product.id){
@@ -17,7 +20,7 @@
             <mat-card-header>
                 <mat-card-title>{{product.title}}</mat-card-title>
             </mat-card-header>
-            <img mat-card-image src={{product.image}} alt={{product.title}}>
+            <img mat-card-image ngSrc={{product.image}} loading="lazy" width="600" height="600" alt={{product.title}}>
             <mat-card-content>
                 <p>
                     {{product.category}}
@@ -30,7 +33,6 @@
             </mat-card-content>
             <mat-card-actions>
                 <button mat-button (click)="cartService.addToCart(product)">Add to cart</button>
-                <button mat-button (click)="cartService.removeToCart(product.id)">Remove to cart</button>
             </mat-card-actions>
         </mat-card>
         }

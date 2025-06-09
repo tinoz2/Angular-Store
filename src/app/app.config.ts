@@ -4,16 +4,19 @@ import { routes } from './app.routes';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideToastr } from 'ngx-toastr';
 import { provideAuth0 } from '@auth0/auth0-angular';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { domain, clientId } from './config/api';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideHttpClient(withFetch()),
+    provideAnimations(),
     provideToastr(),
     provideAuth0({
-      domain: 'dev-tdqnwyasgoy7anam.us.auth0.com',
-      clientId: 'WK9JksxwHjDQwMutSJnm2EFoG6CyrRdk',
+      domain,
+      clientId,
       cacheLocation: 'localstorage',
       useRefreshTokens: true,
       authorizationParams: {

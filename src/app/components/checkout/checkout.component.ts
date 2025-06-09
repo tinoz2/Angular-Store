@@ -21,7 +21,7 @@ export class CheckoutComponent {
   cart = this.cartService.cartItems()
 
   checkoutForm = this.fb.group({
-    email: ['', [Validators.required, Validators.email, Validators.minLength(13)]]
+    email: ['', [Validators.required, Validators.email]]
   })
 
   onSubmit() {

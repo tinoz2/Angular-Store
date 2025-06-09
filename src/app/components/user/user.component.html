@@ -1,1 +1,9 @@
-<p>user works!</p>
+<div>
+    <p>user works!</p>
+
+    @if(user$ | async; as user){
+        @if(user){
+            <p>{{user.name}}</p>
+        }
+    }
+</div>

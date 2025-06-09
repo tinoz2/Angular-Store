@@ -1,10 +1,12 @@
 <div>
     @if(isAuthenticated$ | async; as isAuth){
-        <div>
-            @if(isAuth;){
-                <p>{{ (user$ | async)?.name}}</p>
-            }
-        </div>
+    <div>
+        @if(isAuth;){
+        <p>Autenticado</p>
+        }
+    </div>
+    }@else {
+    <p>No autenticado</p>
     }
 </div>
 <router-outlet />

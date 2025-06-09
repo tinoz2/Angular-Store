@@ -30,6 +30,7 @@ export class CartService {
 
     this._cartItems.update(items => {
       const existingItems = items.find(item => item.productId === product.id)
+      this.toastr.success('Added to cart')
 
       if (existingItems) {
         return items.map(item => {
@@ -38,7 +39,6 @@ export class CartService {
             : item
         })
       } else {
-        this.toastr.success('Added to cart')
         return [...items,
         {
           productId: product.id,
@@ -50,15 +50,9 @@ export class CartService {
     })
   }
 
-  removeToCart(productId: number) {
-    this._cartItems.update(items => {
-      const itemRemoved = items.find(item => item.productId === productId)
-      const newItems = items.filter(item => item.productId !== productId)
-      if (itemRemoved) {
-        this.toastr.error('Removed from cart')
-      }
-      return newItems
-    })
+  clearCart() {
+    this._cartItems.set([])
+    localStorage.removeItem('cart')
   }
 
   loadCartFromStorage() {
